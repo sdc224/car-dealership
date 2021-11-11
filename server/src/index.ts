@@ -12,6 +12,7 @@ import { createTypeOrmConnection } from "./utils/createTypeOrmConnection";
 import { createConnection } from "typeorm";
 import "dotenv/config";
 import "reflect-metadata";
+import { PersonResolver } from "./resolvers/PersonResolver";
 
 (async () => {
 	const app = express();
@@ -68,7 +69,7 @@ import "reflect-metadata";
 
 	const appolloServer: ApolloServer = new ApolloServer({
 		schema: await buildSchema({
-			resolvers: [UserResolver]
+			resolvers: [UserResolver, PersonResolver]
 		}),
 		introspection: true,
 		playground: true,
