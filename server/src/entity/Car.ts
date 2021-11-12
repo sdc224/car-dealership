@@ -24,7 +24,7 @@ export class Car extends BaseEntity {
 	description: string;
 
 	@Field()
-	@Column({ type: "decimal", scale: 2 })
+	@Column({ type: "decimal", precision: 12, scale: 2 })
 	price: number;
 
 	@Field()
@@ -32,10 +32,10 @@ export class Car extends BaseEntity {
 	features: string;
 
 	@Field()
-	@Column({ type: "decimal", scale: 2 })
+	@Column({ type: "decimal", precision: 5, scale: 2 })
 	speed: number;
 
 	@Field()
-	@Column({ type: "decimal", scale: 2 })
+	@Column({ type: "decimal", precision: 5, scale: 2 })
 	mileage: number;
 }

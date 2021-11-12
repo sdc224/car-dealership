@@ -1,10 +1,10 @@
-import { Arg, Mutation, Resolver } from "type-graphql";
+import { Arg, Mutation, Query, Resolver } from "type-graphql";
 import { Car } from "../entity/Car";
 
 @Resolver()
 export class CarResolver {
 	@Mutation(() => Boolean)
-	async create(
+	async createCar(
 		@Arg("name") name: string,
 		@Arg("company") company: string,
 		@Arg("description") description: string,
@@ -30,5 +30,16 @@ export class CarResolver {
 		}
 
 		return true;
+	}
+
+	@Query(() => [Car])
+	async getAllCars() {
+		try {
+			// TODO : Validation
+			return await Car.find();
+		} catch (error) {
+			console.log(error);
+			return null;
+		}
 	}
 }

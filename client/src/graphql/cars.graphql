@@ -1,0 +1,12 @@
+query Cars {
+	getAllCars {
+		id
+		name
+		company
+		description
+		price
+		features
+		speed
+		mileage
+	}
+}
