@@ -13,6 +13,7 @@ import { createConnection } from "typeorm";
 import "dotenv/config";
 import "reflect-metadata";
 import { PersonResolver } from "./resolvers/PersonResolver";
+import { CarResolver } from "./resolvers/CarResolver";
 
 (async () => {
 	const app = express();
@@ -67,18 +68,18 @@ import { PersonResolver } from "./resolvers/PersonResolver";
 		? await createTypeOrmConnection()
 		: await createConnection();
 
-	const appolloServer: ApolloServer = new ApolloServer({
+	const apolloServer: ApolloServer = new ApolloServer({
 		schema: await buildSchema({
-			resolvers: [UserResolver, PersonResolver]
+			resolvers: [UserResolver, PersonResolver, CarResolver]
 		}),
 		introspection: true,
 		playground: true,
 		context: ({ req, res }) => ({ req, res })
 	});
 
-	appolloServer.applyMiddleware({ app, cors: false });
+	apolloServer.applyMiddleware({ app, cors: false });
 
 	app.listen(process.env.PORT || 4000, () => {
-		console.log(`🚀 Server ready at ${process.env.PORT || 4000}${appolloServer.graphqlPath}`);
+		console.log(`🚀 Server ready at ${process.env.PORT || 4000}${apolloServer.graphqlPath}`);
 	});
 })();

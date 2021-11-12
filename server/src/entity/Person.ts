@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 import { ObjectType, Field, Int } from "type-graphql";
 
 /**
- * Users table
+ * Persons table
  */
 @ObjectType()
 @Entity("persons")

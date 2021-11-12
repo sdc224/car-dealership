@@ -25,6 +25,10 @@ const AuthenticatedRoute = ({ component: Component, ...rest }: AuthenticatedRout
 	/>
 );
 
+const HybridRoute = ({ component: Component, ...rest }: AuthenticatedRouteProps) => (
+	<Route {...rest} render={(props) => <Component {...props} loggedIn={getAccessToken()} />} />
+);
+
 // If an access token is identified, push the user to the dashboard, otherwise route to the specified component
 const LoggedInRoute = ({ component: Component, ...rest }: AuthenticatedRouteProps) => (
 	<Route
@@ -52,7 +56,7 @@ export const Routes: React.FC = () => {
 							<Route exact path="/" component={Home} />
 							<LoggedInRoute exact path="/register" component={Register} />
 							<LoggedInRoute exact path="/login" component={Login} />
-							<AuthenticatedRoute exact path="/dashboard" component={Dashboard} />
+							<HybridRoute exact path="/dashboard" component={Dashboard} />
 							<Route exact path="/bye" component={Bye} />
 							<Route
 								path="/"

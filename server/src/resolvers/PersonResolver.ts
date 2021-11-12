@@ -1,24 +1,6 @@
 import { Person } from "../entity/Person";
 import { Arg, Mutation, Resolver } from "type-graphql";
 
-// @ObjectType()
-// class PersonResponse {
-// 	@Field()
-// 	accessToken: string;
-
-// 	@Field(() => Person)
-// 	person: Person;
-// }
-
-// const BmiCategoryAndHealthRisk = [
-// 	"Underweight::Malnutrition",
-// 	"Normal weight::Low",
-// 	"Overweight::Enhanced",
-// 	"Moderately obese::Medium",
-// 	"Severely obese::High",
-// 	"Very severely obese::Very high"
-// ];
-
 @Resolver()
 export class PersonResolver {
 	private calculateCategories(bmi: number): number {
