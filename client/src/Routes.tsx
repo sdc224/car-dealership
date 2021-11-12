@@ -16,14 +16,14 @@ interface AuthenticatedRouteProps {
 }
 
 // If an access token is identified, allow the user to access the route, otherwise route to the login page
-const AuthenticatedRoute = ({ component: Component, ...rest }: AuthenticatedRouteProps) => (
-	<Route
-		{...rest}
-		render={(props) =>
-			getAccessToken() ? <Component {...props} /> : <Redirect to={{ pathname: "/login" }} />
-		}
-	/>
-);
+// const AuthenticatedRoute = ({ component: Component, ...rest }: AuthenticatedRouteProps) => (
+// 	<Route
+// 		{...rest}
+// 		render={(props) =>
+// 			getAccessToken() ? <Component {...props} /> : <Redirect to={{ pathname: "/login" }} />
+// 		}
+// 	/>
+// );
 
 const HybridRoute = ({ component: Component, ...rest }: AuthenticatedRouteProps) => (
 	<Route {...rest} render={(props) => <Component {...props} loggedIn={getAccessToken()} />} />

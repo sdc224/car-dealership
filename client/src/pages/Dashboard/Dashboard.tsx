@@ -34,6 +34,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ loggedIn }) => {
 							name={car.company}
 							onShare={handleShare}
 							onLearnMore={handleLearnMore}
+							image={{ imagePath: "/static/red-car.jpg", alt: "Red Car" }}
 						/>
 					</Grid>
 				))}

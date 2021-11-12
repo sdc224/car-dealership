@@ -14,6 +14,7 @@ import "dotenv/config";
 import "reflect-metadata";
 import { PersonResolver } from "./resolvers/PersonResolver";
 import { CarResolver } from "./resolvers/CarResolver";
+import path from "path";
 
 (async () => {
 	const app = express();
@@ -28,6 +29,8 @@ import { CarResolver } from "./resolvers/CarResolver";
 			credentials: true
 		})
 	);
+
+	app.use("/static", express.static(path.join(__dirname, "static")));
 
 	app.get("/", (_req: Request, res: Response) => {
 		res.send("🚀 Server is running");

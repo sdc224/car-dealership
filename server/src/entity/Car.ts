@@ -21,15 +21,31 @@ export class Car extends BaseEntity {
 
 	@Field()
 	@Column()
-	description: string;
+	model: string;
+
+	@Field()
+	@Column()
+	type: string;
+
+	@Field()
+	@Column()
+	fuel: string;
+
+	@Field()
+	@Column()
+	color: string;
+
+	@Field()
+	@Column({ nullable: true })
+	description?: string;
 
 	@Field()
 	@Column({ type: "decimal", precision: 12, scale: 2 })
 	price: number;
 
 	@Field()
-	@Column({ type: "text" })
-	features: string;
+	@Column({ type: "text", nullable: true })
+	features?: string;
 
 	@Field()
 	@Column({ type: "decimal", precision: 5, scale: 2 })

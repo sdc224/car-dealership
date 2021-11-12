@@ -1,7 +1,14 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { ColorScheme } from "../utils/theme";
 
 export const Home: React.FC = () => {
+	const history = useHistory();
+
+	const handleClick = () => {
+		history.push("/dashboard");
+	};
+
 	return (
 		<div style={{ height: "100vh", backgroundColor: ColorScheme.PRIMARY, marginTop: "-48px" }}>
 			<div
