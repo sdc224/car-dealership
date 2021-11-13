@@ -7,22 +7,32 @@ export class CarResolver {
 	async createCar(
 		@Arg("name") name: string,
 		@Arg("company") company: string,
+		@Arg("model") model: string,
+		@Arg("type") type: string,
+		@Arg("color") color: string,
+		@Arg("fuel") fuel: string,
 		@Arg("description") description: string,
 		@Arg("price") price: number,
 		@Arg("features") features: string,
 		@Arg("speed") speed: number,
-		@Arg("mileage") mileage: number
+		@Arg("mileage") mileage: number,
+		@Arg("tagline") tagline: string
 	) {
 		try {
 			// TODO : Validation
 			await Car.insert({
 				name,
 				company,
+				model,
+				type,
+				color,
+				fuel,
 				description,
 				price,
 				features,
 				speed,
-				mileage
+				mileage,
+				tagline
 			});
 		} catch (error) {
 			console.log(error);

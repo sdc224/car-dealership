@@ -3,10 +3,15 @@ query Cars {
 		id
 		name
 		company
+		model
+		type
+		color
+		fuel
 		description
 		price
 		features
 		speed
 		mileage
+		tagline
 	}
 }

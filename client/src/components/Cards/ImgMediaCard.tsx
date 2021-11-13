@@ -9,7 +9,14 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
-	root: {}
+	root: {
+		height: "100%",
+		display: "flex",
+		flexDirection: "column"
+	},
+	cardActionArea: {
+		flexGrow: 1
+	}
 });
 
 interface ImageOptions {
@@ -38,7 +45,7 @@ const ImgMediaCard: React.FC<ImgMediaCardProps> = ({
 
 	return (
 		<Card className={classes.root}>
-			<CardActionArea>
+			<CardActionArea className={classes.cardActionArea}>
 				{image ? (
 					<CardMedia
 						component="img"

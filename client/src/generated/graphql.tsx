@@ -24,14 +24,19 @@ export type Query = {
 
 export type Car = {
   __typename?: 'Car';
+  color: Scalars['String'];
   company: Scalars['String'];
   description: Scalars['String'];
   features: Scalars['String'];
+  fuel: Scalars['String'];
   id: Scalars['Int'];
   mileage: Scalars['Float'];
+  model: Scalars['String'];
   name: Scalars['String'];
   price: Scalars['Float'];
   speed: Scalars['Float'];
+  tagline: Scalars['String'];
+  type: Scalars['String'];
 };
 
 export type User = {
@@ -62,13 +67,18 @@ export type Mutation = {
 
 
 export type MutationCreateCarArgs = {
+  color: Scalars['String'];
   company: Scalars['String'];
   description: Scalars['String'];
   features: Scalars['String'];
+  fuel: Scalars['String'];
   mileage: Scalars['Float'];
+  model: Scalars['String'];
   name: Scalars['String'];
   price: Scalars['Float'];
   speed: Scalars['Float'];
+  tagline: Scalars['String'];
+  type: Scalars['String'];
 };
 
 
@@ -128,16 +138,21 @@ export type Person = {
 export type CarsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CarsQuery = { __typename?: 'Query', getAllCars: Array<{ __typename?: 'Car', id: number, name: string, company: string, description: string, price: number, features: string, speed: number, mileage: number }> };
+export type CarsQuery = { __typename?: 'Query', getAllCars: Array<{ __typename?: 'Car', id: number, name: string, company: string, model: string, type: string, color: string, fuel: string, description: string, price: number, features: string, speed: number, mileage: number, tagline: string }> };
 
 export type CreateCarMutationVariables = Exact<{
   name: Scalars['String'];
   company: Scalars['String'];
+  model: Scalars['String'];
+  type: Scalars['String'];
+  color: Scalars['String'];
+  fuel: Scalars['String'];
   description: Scalars['String'];
   price: Scalars['Float'];
   features: Scalars['String'];
   speed: Scalars['Float'];
   mileage: Scalars['Float'];
+  tagline: Scalars['String'];
 }>;
 
 
@@ -277,14 +292,19 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type CarResolvers<ContextType = any, ParentType extends ResolversParentTypes['Car'] = ResolversParentTypes['Car']> = {
+  color?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   company?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   features?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  fuel?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   mileage?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  model?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   price?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   speed?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  tagline?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  type?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -303,7 +323,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   calculateTotalOverweight?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
-  createCar?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationCreateCarArgs, 'company' | 'description' | 'features' | 'mileage' | 'name' | 'price' | 'speed'>>;
+  createCar?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationCreateCarArgs, 'color' | 'company' | 'description' | 'features' | 'fuel' | 'mileage' | 'model' | 'name' | 'price' | 'speed' | 'tagline' | 'type'>>;
   createPerson?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationCreatePersonArgs, 'gender' | 'heightCm' | 'weightKg'>>;
   destroyAccount?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   login?: Resolver<ResolversTypes['LoginResponse'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>;
@@ -347,11 +367,16 @@ export const CarsDocument = gql`
     id
     name
     company
+    model
+    type
+    color
+    fuel
     description
     price
     features
     speed
     mileage
+    tagline
   }
 }
     `;
@@ -383,8 +408,8 @@ export type CarsQueryHookResult = ReturnType<typeof useCarsQuery>;
 export type CarsLazyQueryHookResult = ReturnType<typeof useCarsLazyQuery>;
 export type CarsQueryResult = Apollo.QueryResult<CarsQuery, CarsQueryVariables>;
 export const CreateCarDocument = gql`
-    mutation CreateCar($name: String!, $company: String!, $description: String!, $price: Float!, $features: String!, $speed: Float!, $mileage: Float!) {
-  createCar(name: $name, company: $company, description: $description, price: $price, features: $features, speed: $speed, mileage: $mileage)
+    mutation CreateCar($name: String!, $company: String!, $model: String!, $type: String!, $color: String!, $fuel: String!, $description: String!, $price: Float!, $features: String!, $speed: Float!, $mileage: Float!, $tagline: String!) {
+  createCar(name: $name, company: $company, model: $model, type: $type, color: $color, fuel: $fuel, description: $description, price: $price, features: $features, speed: $speed, mileage: $mileage, tagline: $tagline)
 }
     `;
 export type CreateCarMutationFn = Apollo.MutationFunction<CreateCarMutation, CreateCarMutationVariables>;
@@ -404,11 +429,16 @@ export type CreateCarMutationFn = Apollo.MutationFunction<CreateCarMutation, Cre
  *   variables: {
  *      name: // value for 'name'
  *      company: // value for 'company'
+ *      model: // value for 'model'
+ *      type: // value for 'type'
+ *      color: // value for 'color'
+ *      fuel: // value for 'fuel'
  *      description: // value for 'description'
  *      price: // value for 'price'
  *      features: // value for 'features'
  *      speed: // value for 'speed'
  *      mileage: // value for 'mileage'
+ *      tagline: // value for 'tagline'
  *   },
  * });
  */

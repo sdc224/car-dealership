@@ -1,19 +1,29 @@
 mutation CreateCar(
 	$name: String!
 	$company: String!
+	$model: String!
+	$type: String!
+	$color: String!
+	$fuel: String!
 	$description: String!
 	$price: Float!
 	$features: String!
 	$speed: Float!
 	$mileage: Float!
+	$tagline: String!
 ) {
 	createCar(
 		name: $name
 		company: $company
+		model: $model
+		type: $type
+		color: $color
+		fuel: $fuel
 		description: $description
 		price: $price
 		features: $features
 		speed: $speed
 		mileage: $mileage
+		tagline: $tagline
 	)
 }

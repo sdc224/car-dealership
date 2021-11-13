@@ -9,11 +9,12 @@ define(Car, (faker: typeof Faker) => {
 	const type = vehicle.type();
 	const color = vehicle.color();
 	const fuel = vehicle.fuel();
-	const description = faker.lorem.sentence(1);
+	const description = faker.lorem.words(10);
 	const features = faker.lorem.lines(5);
 	const price = faker.finance.amount(300000, 150000000, 2);
 	const speed = faker.finance.amount(140, 300, 2);
 	const mileage = faker.finance.amount(18, 100, 2);
+	const tagline = faker.lorem.words(6);
 
 	const car = new Car();
 	car.name = name;
@@ -27,6 +28,7 @@ define(Car, (faker: typeof Faker) => {
 	car.price = Number(price);
 	car.speed = Number(speed);
 	car.mileage = Number(mileage);
+	car.tagline = tagline;
 
 	return car;
 });

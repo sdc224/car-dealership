@@ -54,4 +54,8 @@ export class Car extends BaseEntity {
 	@Field()
 	@Column({ type: "decimal", precision: 5, scale: 2 })
 	mileage: number;
+
+	@Field()
+	@Column({ nullable: true })
+	tagline?: string;
 }
