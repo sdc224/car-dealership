@@ -22,7 +22,7 @@ function Navbar() {
 			<CssBaseline />
 			<Toolbar>
 				<Typography variant="h4" className={classes.logo}>
-					Navbar
+					CAR CATALOGUE
 				</Typography>
 				{isMobile ? (
 					<React.Fragment />
