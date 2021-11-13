@@ -1,26 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { Routes } from "./Routes";
+import React from "react";
+import Helmet from "react-helmet";
+import Typography from "@material-ui/core/Typography";
+import Routes from "./routes";
 import { setAccessToken } from "./utils/accessToken";
 import { Loading } from "./components/Loading/Loading";
-import Helmet from "react-helmet";
 import { ColorScheme } from "./utils/theme";
 
 export const App: React.FC = () => {
-	const [loading, setLoading] = useState<boolean>(true);
+	const [loading, setLoading] = React.useState<boolean>(true);
+	const [error, serError] = React.useState<string>("");
 
 	// Fetch refresh token
-	useEffect(() => {
+	React.useEffect(() => {
 		fetch((process.env.REACT_APP_SERVER_URL as string) + "/refresh_token", {
 			method: "POST",
 			credentials: "include"
-		}).then(async (res) => {
-			const { accessToken } = await res.json();
-			setAccessToken(accessToken);
-			setLoading(false);
-		});
+		})
+			.then(async (res) => {
+				const { accessToken } = await res.json();
+				setAccessToken(accessToken);
+				setLoading(false);
+			})
+			.catch((err) => {
+				console.log(err);
+				setLoading(false);
+				serError("Very Sorry, but our servers want better salary 🤦‍♂️😢");
+			});
 	}, []);
 
-	if (loading) {
+	if (loading && error.length === 0) {
 		return (
 			<>
 				<Helmet>
@@ -39,6 +47,13 @@ export const App: React.FC = () => {
 			</>
 		);
 	}
+
+	if (!loading && error.length > 0)
+		return (
+			<Typography align="center" variant="h1">
+				{error}
+			</Typography>
+		);
 
 	return (
 		<>

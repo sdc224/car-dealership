@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import {
 	ApolloClient,
 	InMemoryCache,
@@ -10,10 +9,12 @@ import {
 	HttpLink
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import { getAccessToken, setAccessToken } from "./utils/accessToken";
 import { TokenRefreshLink } from "apollo-link-token-refresh";
 import jwtDecode from "jwt-decode";
+import { getAccessToken, setAccessToken } from "./utils/accessToken";
 import { App } from "./App";
+
+import "./index.css";
 
 // Setup Apollo Client manually without Apollo Boost
 // https://www.apollographql.com/docs/react/migrating/boost-migration/

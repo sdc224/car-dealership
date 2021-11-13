@@ -1,0 +1,8 @@
+{
+	"HOME": "/",
+	"LOGIN": "/login",
+	"REGISTER": "/register",
+	"DASHBOARD": "/dashboard",
+	"BYE": "/bye",
+	"NOTFOUND": "/not-found"
+}
