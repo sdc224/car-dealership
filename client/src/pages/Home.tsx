@@ -10,7 +10,10 @@ export const Home: React.FC = () => {
 	};
 
 	return (
-		<div style={{ height: "100vh", backgroundColor: ColorScheme.PRIMARY, marginTop: "-48px" }}>
+		<div
+			style={{ height: "100vh", backgroundColor: ColorScheme.PRIMARY, marginTop: "-48px" }}
+			onClick={handleClick}
+		>
 			<div
 				style={{
 					position: "absolute",

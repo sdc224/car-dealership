@@ -3,6 +3,7 @@ import { useDashboardStyles } from "./styles/Dashboard.style";
 import { CarsQueryResult, useCarsQuery } from "../../generated/graphql";
 import { Grid } from "@material-ui/core";
 import ImgMediaCard from "../../components/Cards/ImgMediaCard";
+import { Loading } from "../../components/Loading/Loading";
 
 interface DashboardProps {
 	loggedIn: string;
@@ -24,21 +25,25 @@ export const Dashboard: React.FC<DashboardProps> = ({ loggedIn }) => {
 
 	return (
 		<div className={classes.root}>
-			<Grid className={classes.gridContainer} container spacing={3}>
-				{cars?.data?.getAllCars?.map((car) => (
-					<Grid item xs={4} key={`Grid-${car.id}`}>
-						<ImgMediaCard
-							key={car.id}
-							title={car.name}
-							description={car.description}
-							name={car.company}
-							onShare={handleShare}
-							onLearnMore={handleLearnMore}
-							image={{ imagePath: "/static/red-car.jpg", alt: "Red Car" }}
-						/>
-					</Grid>
-				))}
-			</Grid>
+			{!cars || !cars.data ? (
+				<Loading />
+			) : (
+				<Grid className={classes.gridContainer} container spacing={3}>
+					{cars?.data?.getAllCars?.map((car) => (
+						<Grid item xs={4} key={`Grid-${car.id}`}>
+							<ImgMediaCard
+								key={car.id}
+								title={car.name}
+								description={car.description}
+								name={car.company}
+								onShare={handleShare}
+								onLearnMore={handleLearnMore}
+								image={{ imagePath: "/static/red-car.jpg", alt: "Red Car" }}
+							/>
+						</Grid>
+					))}
+				</Grid>
+			)}
 		</div>
 	);
 };

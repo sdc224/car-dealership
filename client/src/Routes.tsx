@@ -51,29 +51,27 @@ export const Routes: React.FC = () => {
 			</Helmet>
 			<BrowserRouter>
 				<div style={{ height: "100%" }}>
-					<main>
-						<Switch>
-							<Route exact path="/" component={Home} />
-							<LoggedInRoute exact path="/register" component={Register} />
-							<LoggedInRoute exact path="/login" component={Login} />
-							<HybridRoute exact path="/dashboard" component={Dashboard} />
-							<Route exact path="/bye" component={Bye} />
-							<Route
-								path="/"
-								render={() => (
-									<div
-										style={{
-											display: "flex",
-											justifyContent: "center",
-											marginTop: 12
-										}}
-									>
-										404 Not Found
-									</div>
-								)}
-							/>
-						</Switch>
-					</main>
+					<Switch>
+						<Route exact path="/" component={Home} />
+						<LoggedInRoute exact path="/register" component={Register} />
+						<LoggedInRoute exact path="/login" component={Login} />
+						<HybridRoute exact path="/dashboard" component={Dashboard} />
+						<Route exact path="/bye" component={Bye} />
+						<Route
+							path="/"
+							render={() => (
+								<div
+									style={{
+										display: "flex",
+										justifyContent: "center",
+										marginTop: 12
+									}}
+								>
+									404 Not Found
+								</div>
+							)}
+						/>
+					</Switch>
 				</div>
 			</BrowserRouter>
 		</>
